@@ -6,8 +6,8 @@ Based in the original add-on: https://github.com/tettou771/ofxHelpMessage from [
 
 You can add variables and text or hardcoded messages.  
 
-Added variables (string, float, int, bool) are referenced, and his value can be showed in realtime in any frame at the same text box.  
-You dont need to update nothing.
+Added variables (string, float, int, bool) are referenced, and their value can be shown in real-time in any frame at the same text box.  
+You don't need to update anything.
 
 **NOTE ABOUT MULTIPLE INSTANCES**  
 The class uses a *singleton*, so you can add referenced variables (or text) from any of your included classes.  
@@ -18,20 +18,21 @@ When using multiple instances, all classes will "share" the same text box.
 ![Screencast](readme_images/ofxSurfingDebugVariables.gif?raw=true "moebiusSurfing")
 
 ## Usage
-1. Include `ofxSurfingDebugVariables.h`.
-2. Put the static methods like `ofxSurfingDebugVariables::addText("saveKey", "Key S: save");` in setup().
-3. During runtime press '?' key to show text box.
-4. Done! All your added variables will be printed to the screen on every frame.
+1. Include `ofxSurfingDebugVariables.h`. In multiple clasess, if desired.
+2. Put the static methods like `ofxSurfingDebugVariables::addText("Key S: save");` in ```setup()```.
+3. During runtime press '?' key to show the text box.
+4. Box position can be dragged by mouse. Will restore the position on restart your app.
+5. Done! All your added variables will be printed on the screen on every frame.
 
 ### ofApp.h
 ```cpp
-    #include "ofxSurfingDebugVariables.h"
+#include "ofxSurfingDebugVariables.h"
 
-    string st1;
-    float f1;
-    int i1;
-    bool b1;
-    ofParameter<float> floatParam;
+string st1;
+float f1;
+int i1;
+bool b1;
+ofParameter<float> floatParam;
 ```
 
 ### ofApp.cpp
@@ -39,17 +40,17 @@ When using multiple instances, all classes will "share" the same text box.
 
 setup()
 
-// set tittle
+// set the tittle
 ofxSurfingDebugVariables::setTitle("APP INFO");
 
-// add/subscribe variables:
+// add/subscribe the variables to be monitorized:
 
-// name is not used in this type. no variable, just the string text
+// hardcoded string text. no name required. not a variable 
 ofxSurfingDebugVariables::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
 
-// add the referenced variables that you what to show printed in the screen box
 // pass all variables as reference
-ofxSurfingDebugVariables::addString("myString1", &str1);ofxSurfingDebugVariables::addFloat("myFloat1 ", &f1);
+ofxSurfingDebugVariables::addString("myString1", &str1);
+ofxSurfingDebugVariables::addFloat("myFloat1 ", &f1);
 ofxSurfingDebugVariables::addInt("myInt1", &i1);
 ofxSurfingDebugVariables::addBool("myBool1", &b1);
 
@@ -62,9 +63,11 @@ ofxSurfingDebugVariables::addParamFloat(floatParam);
 //--
 
 // control:
-// change show text box key
-//ofxSurfingDebugVariables::setMomentary(true);
+// change show key
 //ofxSurfingDebugVariables::setHelpKey('d');// '?' by default
+//ofxSurfingDebugVariables::setMomentary(true);// show only when key pressed
+
+//--
 
 // customize style:
 // show
@@ -77,7 +80,7 @@ ofxSurfingDebugVariables::addParamFloat(floatParam);
 //ofxSurfingDebugVariables::setTabbed(true, 1);
 ```
 
-You can use this workaround to add ofParameters too:
+You can use this "workaround" to add other **ofParameters** types too: (float and int are implemented)
 ```cpp 
 ofParameter<float> floatParam;
 ofxSurfingDebugVariables::addFloat(floatParam.getName(), (float*)&floatParam.get());//get name from parameter
@@ -94,7 +97,7 @@ ofxSurfingDebugVariables::addString("myString", (string*)&stringParam.get());//p
   - **macOS**. **High Sierra** / **Xcode9** & **Xcode10** / **OF ~0.11**
 
 ## More Customization
-You can use some method to change appearance and behaviour.
+You can use some method to change appearance and behavior.
 For example.
 
 ```.cpp
@@ -120,7 +123,7 @@ ofxSurfingDebugVariables::setPos(500, 500);
 ```
 
 ## TODO:
-+ Add more ofParameters types: colors, ofParameterGroup, etc.
++ Add more ofParameter types: colors, ofParameterGroup, etc.
 + Enable multiple boxes when using multi instances, or just split to another add-on without singleton.
 
 ## Fork author
