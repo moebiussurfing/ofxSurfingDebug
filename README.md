@@ -97,7 +97,7 @@ ofxSurfingDebugVariables::addString("myString", (string*)&stringParam.get());//p
   - **macOS**. **High Sierra** / **Xcode9** & **Xcode10** / **OF ~0.11**
 
 ## More Customization
-You can use some method to change appearance and behavior.
+You can use some extra methods to change appearance and behavior.
 For example.
 
 ```.cpp
