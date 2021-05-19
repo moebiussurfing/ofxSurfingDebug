@@ -1,8 +1,9 @@
 # ofxSurfingDebug
 
-This is an openFrameworks addon to debug and print some variables of your ofApp in runtime without the need of updating anything.
+This is an **openFrameworks** add-on to subscribe, debug and print some variables of your **ofApp** during runtime without any required updating.
  
-Based in the original addon: https://github.com/tettou771/ofxHelpMessage from Toru Takata (https://github.com/tettou771)
+Based in the original add-on:  
+https://github.com/tettou771/ofxHelpMessage from [**Toru Takata**](https://github.com/tettou771)
 
 You can add text messages and variables too.
 
@@ -12,16 +13,14 @@ You dont need to update nothing.
 The class uses a singleton, so you can add referenced variables (or text) from any of your included classes. You just need to add this header to your classes. All classes will "share" the same text box.
 
 
-![Alt text](/screenshot.jpg?raw=true "MoebiusSurfing")
-
+![screenshot](readme_images/screenshot.jpg?raw=true "moebiusSurfing")
 
 ## Usage
-
-1. Add this addon to your project.
-1. Include `ofxSurfingDebug.h`.
-1. Put the static methods like `ofxSurfingDebug::addText("saveKey", "Key S: save");` in setup().
-1. When program running, press '?' key to show text box.
-1. All your added variables will be printed to the screen text box.
+1. Add this add-on to your project.
+2. Include `ofxSurfingDebug.h`.
+3. Put the static methods like `ofxSurfingDebug::addText("saveKey", "Key S: save");` in setup().
+4. When program running, press '?' key to show text box.
+5. All your added variables will be printed to the screen text box.
 
 ### ofApp.h
 ```cpp
@@ -37,10 +36,10 @@ The class uses a singleton, so you can add referenced variables (or text) from a
 ### ofApp.cpp
 ```cpp 
 
-setup()
+ofApp::setup()
 
     // set first line tittle
-    ofxSurfingDebug::setTitle("APP INFO                \n");
+    ofxSurfingDebug::setTitle("APP INFO");
     
     // add variables:
 
@@ -79,7 +78,7 @@ setup()
     // tab label names and variable values aligned by columns
     ofxSurfingDebug::setTabbed(true, 1);
     
-update()
+ofApp::update()
 
     //your variables will change...
     //but nothing more to do.
@@ -94,20 +93,18 @@ ofParameter<string> stringParam;
 ofxSurfingDebug::addString("myString", (string*)&stringParam.get());//put your custom name
 ```
 
+## Dependencies
+* [ofxScaleDragRect](https://github.com/moebiussurfing/ofxScaleDragRect)
 
 ## Tested system
-
-I think compatible almost all platforms, because it's a simple addon.
-- Windows 10 / VS2017 / OF 0.11.0
-- macOS / High Sierra / Xcode / OF 0.11.0
-
+  - **Windows 10** / **VS 2017** / **OF ~0.11**
+  - **macOS**. **High Sierra** / **Xcode9** & **Xcode10** / **OF ~0.11**
 
 ## More Customization
-
 You can use some method to change appearance and behaviour.
 For example.
 
-```cpp
+```.cpp
 // clear message
 //ofxSurfingDebug::clear();
 
@@ -130,24 +127,16 @@ ofxSurfingDebug::setPos(500, 500);
 ```
 
 ### TODO:
-
 + add ofParameters
 + enable drag box position by mouse.
 + store/recall position and settings to xml.
-+ enable multiple boxes or just split to another addon without singleton.
++ enable multiple boxes or just split to another add-on without singleton.
 
+## Fork author
+An add-on by **@moebiusSurfing**  
+*( ManuMolina ) 2019-2021* 
 
-## Original Author of ofxSurfingDebug
-
-Toru Takata in Japan.
-
-GitHub: https://github.com/tettou771
-
-Link: http://tettou771.com
-
-
-## Modified and splitted by MoebiusSurfing
-
-GitHub: https://github.com/moebiussurfing
-
-Link: https://www.instagram.com/moebiussurfing/
+## Original Author
+**Toru Takata** in Japan.
+[GitHub](https://github.com/tettou771)  
+[Link](http://tettou771.com)  
