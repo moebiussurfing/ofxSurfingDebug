@@ -5,15 +5,17 @@ An **openFrameworks** add-on to subscribe, debug and print some variables of you
 Based in the original add-on:  
 https://github.com/tettou771/ofxHelpMessage from [**Toru Takata**](https://github.com/tettou771)
 
-You can add text messages and variables too.
+You can add variables and text messages too.
 
 Added variables (string, float, int, bool) are referenced, and can be showed in realtime in the same text box.  
 You dont need to update nothing.
 
 The class uses a singleton, so you can add referenced variables (or text) from any of your included classes.  
 You just need to add this header to your classes.  
+when using multiple instances, 
 All classes will "share" the same text box.
 
+## Screenshot
 ![screenshot](readme_images/screenshot.jpg?raw=true "moebiusSurfing")
 
 ## Usage
