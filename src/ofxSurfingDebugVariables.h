@@ -98,6 +98,7 @@ private:
     ofVec2f pos;
     ofVec2f drawPos;
 	bool bTopAlign;
+	int MIN_BOX_WIDTH;
 
     ofTrueTypeFont font;
 
@@ -159,7 +160,7 @@ private:
     ///-
 
     //layout
-    bool bTabbed = false;
+    bool bTabbed = true;
     int tabsNum = 1;
     int fRes = 2;
     int margin = 20;

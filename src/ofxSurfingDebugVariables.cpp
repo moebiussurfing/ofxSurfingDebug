@@ -376,7 +376,8 @@ ofxSurfingDebugVariables::ofxSurfingDebugVariables() {
 	pos.set(10, 10);
 	helpKey = '?';
 	showFPS = false;
-	bTabbed = false;
+	bTabbed = true;
+	MIN_BOX_WIDTH = 200;
 
 	messageBox = "";
 	maxChars = 0;
@@ -384,11 +385,12 @@ ofxSurfingDebugVariables::ofxSurfingDebugVariables() {
 	ofAddListener(ofEvents().draw, this, &ofxSurfingDebugVariables::draw, OF_EVENT_ORDER_AFTER_APP);
 	ofAddListener(ofEvents().keyPressed, this, &ofxSurfingDebugVariables::keyPressed, OF_EVENT_ORDER_AFTER_APP);
 	
-	//draggable
+	// box draggable
 	myRect.setAutoSave(true);
 	//myRect.loadSettings();
 	myRect.setLockResize(true);
 	myRect.enableEdit();
+	myRect.setRounded(roundedSize);
 	//myRect.setRect(200, 200, 200, 400);
 }
 
@@ -457,6 +459,10 @@ void ofxSurfingDebugVariables::draw(ofEventArgs& e) {
 				rectBB.y -= margin;
 				rectBB.height += 2 * margin;
 				rectBB.width += 2 * margin;
+				
+				int ww = rectBB.width;
+
+				if (ww < MIN_BOX_WIDTH) rectBB.width = MIN_BOX_WIDTH;
 
 				//if (!myRect.isEditing()) 
 				{
@@ -635,6 +641,7 @@ void ofxSurfingDebugVariables::setRounded(bool b, float size) {
 	singletonGenerate();
 	singleton->bRounded = b;
 	singleton->roundedSize = size;
+	singleton->myRect.setRounded(size);
 }
 
 //TODO:
