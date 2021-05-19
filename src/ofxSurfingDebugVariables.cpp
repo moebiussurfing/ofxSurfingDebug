@@ -367,12 +367,12 @@ void ofxSurfingDebugVariables::updateItems()
 ///-
 
 ofxSurfingDebugVariables::ofxSurfingDebugVariables() {
-	showing = false;
+	bShowGui = false;
 	BBoxShowing = true;
 	momentary = false;
 	initialized = true;
 	textColor = ofColor::white;
-	bgColor = ofColor(0, 150);
+	bgColor = ofColor(0, 140);
 	pos.set(10, 10);
 	helpKey = '?';
 	showFPS = false;
@@ -413,6 +413,13 @@ void ofxSurfingDebugVariables::exit() {
 
 void ofxSurfingDebugVariables::draw(ofEventArgs& e) {
 
+	if (momentary) 
+	{
+		bShowGui = ofGetKeyPressed(helpKey);
+	}
+
+	if (!bShowGui) return;
+
 	if (myRect.isEditing()) {
 		pos = ofVec2f(myRect.getX(), myRect.getY());
 		//pos = ofVec2f(myRect.getX()+ margin, myRect.getY()+ margin);
@@ -420,11 +427,8 @@ void ofxSurfingDebugVariables::draw(ofEventArgs& e) {
 
 	ofEnableAlphaBlending();
 
-	if (momentary) {
-		showing = ofGetKeyPressed(helpKey);
-	}
-
-	if (showing) {
+	if (bShowGui) 
+	{
 		updateItems();
 
 		ofPushStyle();
@@ -487,20 +491,15 @@ void ofxSurfingDebugVariables::draw(ofEventArgs& e) {
 			//text
 			ofSetColor(textColor);
 
-			if (bTopAlign)
-				font.drawString(messageBox, drawPos.x, drawPos.y);
-			else
-				font.drawString(messageBox, drawPos.x, ofGetWindowHeight() - drawPos.y);
+			if (bTopAlign) font.drawString(messageBox, drawPos.x, drawPos.y);
+			else font.drawString(messageBox, drawPos.x, ofGetWindowHeight() - drawPos.y);
 
 			ofPopMatrix();
 		}
 		else
 		{
-			if (bTopAlign)
-				ofDrawBitmapStringHighlight(messageBox, drawPos, bgColor, textColor);
-			else
-				ofDrawBitmapStringHighlight(messageBox,
-					ofVec2f(drawPos.x, ofGetHeight() - drawPos.y), bgColor, textColor);
+			if (bTopAlign) ofDrawBitmapStringHighlight(messageBox, drawPos, bgColor, textColor);
+			else ofDrawBitmapStringHighlight(messageBox, ofVec2f(drawPos.x, ofGetHeight() - drawPos.y), bgColor, textColor);
 		}
 		ofPopStyle();
 	}
@@ -508,7 +507,7 @@ void ofxSurfingDebugVariables::draw(ofEventArgs& e) {
 
 void ofxSurfingDebugVariables::keyPressed(ofKeyEventArgs& key) {
 	if (!momentary && key.key == helpKey) {
-		showing = !showing;
+		bShowGui = !bShowGui;
 	}
 }
 
@@ -530,12 +529,12 @@ char ofxSurfingDebugVariables::getHelpKey() {
 void ofxSurfingDebugVariables::setMomentary(bool _momentary) {
 	singletonGenerate();
 	singleton->momentary = _momentary;
-	if (singleton->momentary) singleton->showing = ofGetKeyPressed(singleton->helpKey);
+	if (singleton->momentary) singleton->bShowGui = ofGetKeyPressed(singleton->helpKey);
 }
 
 void ofxSurfingDebugVariables::setShowing(bool _showing) {
 	singletonGenerate();
-	singleton->showing = _showing;
+	singleton->bShowGui = _showing;
 }
 
 void ofxSurfingDebugVariables::setShowFPS(bool _showing) {
@@ -550,7 +549,7 @@ bool ofxSurfingDebugVariables::getMomentary() {
 
 bool ofxSurfingDebugVariables::getSwhoing() {
 	singletonGenerate();
-	return singleton->showing;
+	return singleton->bShowGui;
 }
 
 void ofxSurfingDebugVariables::singletonGenerate() {
