@@ -15,7 +15,7 @@ when using multiple instances,
 All classes will "share" the same text box.
 
 ## Screencast
-![screenshot](readme_images/ofxSurfingDebugVariables.gif?raw=true "moebiusSurfing")
+![Screencast](readme_images/ofxSurfingDebugVariables.gif?raw=true "moebiusSurfing")
 
 ## Usage
 1. Include `ofxSurfingDebugVariables.h`.
