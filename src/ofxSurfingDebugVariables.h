@@ -5,11 +5,11 @@
 //TODO:
 //+ add auto position from bottom + offset
 
-class ofxSurfingDebug
+class ofxSurfingDebugVariables
 {
 private:
-    ofxSurfingDebug();
-    ~ofxSurfingDebug();
+    ofxSurfingDebugVariables();
+    ~ofxSurfingDebugVariables();
 
 public:
 	ofxInteractiveRect myRect = { "myRect" };
@@ -86,7 +86,7 @@ private:
 
 //    unordered_map<string, double> maptest;
 
-    static ofxSurfingDebug *singleton;
+    static ofxSurfingDebugVariables *singleton;
     static void singletonGenerate();
     ofMutex mutex;
 	bool initialized;
@@ -162,8 +162,8 @@ private:
     bool bTabbed = false;
     int tabsNum = 1;
     int fRes = 2;
-    int margin = 5;
-    bool bRounded = false;
+    int margin = 20;
+    bool bRounded = true;
     float roundedSize = 10.0f;
 	bool showFPS;
 

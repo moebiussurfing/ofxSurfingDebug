@@ -1,4 +1,4 @@
-# ofxSurfingDebug
+# ofxSurfingDebugVariables
 
 An **openFrameworks** add-on to subscribe, debug and print some variables of your **ofApp** during runtime without any required updating.
  
@@ -15,17 +15,17 @@ when using multiple instances,
 All classes will "share" the same text box.
 
 ## Screencast
-![screenshot](readme_images/ofxSurfingDebug.gif?raw=true "moebiusSurfing")
+![screenshot](readme_images/ofxSurfingDebugVariables.gif?raw=true "moebiusSurfing")
 
 ## Usage
-1. Include `ofxSurfingDebug.h`.
-2. Put the static methods like `ofxSurfingDebug::addText("saveKey", "Key S: save");` in setup().
+1. Include `ofxSurfingDebugVariables.h`.
+2. Put the static methods like `ofxSurfingDebugVariables::addText("saveKey", "Key S: save");` in setup().
 3. During runtime press '?' key to show text box.
 4. Done! All your added variables will be printed to the screen on every frame.
 
 ### ofApp.h
 ```cpp
-    #include "ofxSurfingDebug.h"
+    #include "ofxSurfingDebugVariables.h"
 
     string st1;
     float f1;
@@ -40,50 +40,50 @@ All classes will "share" the same text box.
 setup()
 
 // set tittle
-ofxSurfingDebug::setTitle("APP INFO");
+ofxSurfingDebugVariables::setTitle("APP INFO");
 
 // add/subscribe variables:
 
 // name is not used in this type. no variable, just the string text
-ofxSurfingDebug::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
+ofxSurfingDebugVariables::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
 
 // add the referenced variables that you what to show printed in the screen box
 // pass all variables as reference
-ofxSurfingDebug::addString("myString1", &str1);ofxSurfingDebug::addFloat("myFloat1 ", &f1);
-ofxSurfingDebug::addInt("myInt1", &i1);
-ofxSurfingDebug::addBool("myBool1", &b1);
+ofxSurfingDebugVariables::addString("myString1", &str1);ofxSurfingDebugVariables::addFloat("myFloat1 ", &f1);
+ofxSurfingDebugVariables::addInt("myInt1", &i1);
+ofxSurfingDebugVariables::addBool("myBool1", &b1);
 
 // ofParameters. only float and int types for now.
-ofxSurfingDebug::addParamFloat(floatParam);
+ofxSurfingDebugVariables::addParamFloat(floatParam);
 
 // add empty line to make space
-//ofxSurfingDebug::addNewLine();
+//ofxSurfingDebugVariables::addNewLine();
 
 //--
 
 // control:
 // change show text box key
-//ofxSurfingDebug::setMomentary(true);
-//ofxSurfingDebug::setHelpKey('d');
+//ofxSurfingDebugVariables::setMomentary(true);
+//ofxSurfingDebugVariables::setHelpKey('d');
 
 // customize style:
 // show
-//ofxSurfingDebug::setVisible(true);
+//ofxSurfingDebugVariables::setVisible(true);
 // round bbox
-//ofxSurfingDebug::setRounded(true, 5.0f);
+//ofxSurfingDebugVariables::setRounded(true, 5.0f);
 // set margin borders
-//ofxSurfingDebug::setMarginBorders(20);
+//ofxSurfingDebugVariables::setMarginBorders(20);
 // tab label names and variable values aligned by columns
-//ofxSurfingDebug::setTabbed(true, 1);
+//ofxSurfingDebugVariables::setTabbed(true, 1);
 ```
 
 You can use this workaround to add ofParameters too:
 ```cpp 
 ofParameter<float> floatParam;
-ofxSurfingDebug::addFloat(floatParam.getName(), (float*)&floatParam.get());//get name from parameter
+ofxSurfingDebugVariables::addFloat(floatParam.getName(), (float*)&floatParam.get());//get name from parameter
 
 ofParameter<string> stringParam;
-ofxSurfingDebug::addString("myString", (string*)&stringParam.get());//put your custom name
+ofxSurfingDebugVariables::addString("myString", (string*)&stringParam.get());//put your custom name
 ```
 
 ## Dependencies
@@ -99,23 +99,23 @@ For example.
 
 ```.cpp
 // clear message
-//ofxSurfingDebug::clear();
+//ofxSurfingDebugVariables::clear();
 
 // set text color
 // default: ofColor::white
-ofxSurfingDebug::setTextColor(ofColor(255, 255, 0));
+ofxSurfingDebugVariables::setTextColor(ofColor(255, 255, 0));
 
 // set background color
 // default: ofColor(0, 0, 0, 150) this is black transparently
-ofxSurfingDebug::setBackgroundColor(ofColor(0));
+ofxSurfingDebugVariables::setBackgroundColor(ofColor(0));
 
 // set font
 // draw with ofTrueTypeFont if loaded
-ofxSurfingDebug::loadFont("arial.ttf", 30);
+ofxSurfingDebugVariables::loadFont("arial.ttf", 30);
 
 // set position
 // default: (10, 10)
-ofxSurfingDebug::setPos(500, 500);
+ofxSurfingDebugVariables::setPos(500, 500);
 
 ```
 

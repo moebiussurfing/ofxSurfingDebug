@@ -2,9 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-	ofSetFrameRate(60);
 
-	//--
+	ofSetFrameRate(60);
 
 	// add variabes
 
@@ -13,7 +12,7 @@ void ofApp::setup() {
 
 	// name not showed in text type
 	ofxSurfingDebugVariables::addText("HELP :");
-	ofxSurfingDebugVariables::addText("KEY [?] : HIDE/SHOW");
+	ofxSurfingDebugVariables::addText("KEY [SPACE] : HIDE/SHOW");
 	ofxSurfingDebugVariables::addText("these are hardcoded text lines");
 	ofxSurfingDebugVariables::addNewLine();
 
@@ -45,18 +44,69 @@ void ofApp::setup() {
 
 	//----
 
-	// cutomization
+	// extra cutomizations:
 
 	// show box. hidden by default
 	ofxSurfingDebugVariables::setShowing(true);
 
 	// customize font
+
+	// size
+	fontSize = 10;
+	//fontSize = 9;
+
 	// draws with ofTrueTypeFont if loaded
-	fontSize = 9;
 	string path = "assets/fonts/";
 	path += "overpass-mono-bold.otf";
+	//path += "Kazesawa-Extrabold.ttf";
 	//path += "mono.ttf";
+	//path += "arial.ttf";
 	ofxSurfingDebugVariables::loadFont(path, fontSize);
+
+	// set position
+	// default: (10, 10)
+	//ofxSurfingDebugVariables::setPos(10, 10);
+
+	// change show message key
+	// default: '?'
+	ofxSurfingDebugVariables::setHelpKey(' ');
+
+	// set show mode to momentary/toggle
+	// default: true (momentary)
+	ofxSurfingDebugVariables::setMomentary(false); // toggle mode
+
+
+	// set margin borders
+	// default 5
+	ofxSurfingDebugVariables::setMarginBorders(20);
+
+	// tab labels and values
+	ofxSurfingDebugVariables::setTabbed(true, 1);
+
+	// float decimals
+	ofxSurfingDebugVariables::setFloatResolution(2);
+
+	// round bbox
+	ofxSurfingDebugVariables::setRounded(false);
+
+	// show fps
+	ofxSurfingDebugVariables::setShowFPS(true);
+
+	// clear message
+	//ofxSurfingDebugVariables::clear();
+
+	// set text color
+	// default: ofColor::white
+	//ofxSurfingDebugVariables::setTextColor(ofColor(255, 255, 0));
+
+	// set background color
+	// default: ofColor(0, 0, 0, 150) this is black transparently
+	//ofxSurfingDebugVariables::setBackgroundColor(ofColor(0));
+}
+
+//--------------------------------------------------------------
+void ofApp::exit() {
+	ofxSurfingDebugVariables::exit();
 }
 
 //--------------------------------------------------------------
@@ -117,14 +167,10 @@ void ofApp::update() {
 
 	// bool
 	if (myRandom == 4) b2 = !b2;
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
 	// nothing more
-}
-
-//--------------------------------------------------------------
-void ofApp::exit() {
-	ofxSurfingDebugVariables::exit();//required to auto save/handle box position
 }

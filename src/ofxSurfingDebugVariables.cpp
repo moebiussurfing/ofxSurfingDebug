@@ -1,8 +1,8 @@
-#include "ofxSurfingDebug.h"
+#include "ofxSurfingDebugVariables.h"
 
-ofxSurfingDebug* ofxSurfingDebug::singleton;
+ofxSurfingDebugVariables* ofxSurfingDebugVariables::singleton;
 
-void ofxSurfingDebug::setTitle(string _title)
+void ofxSurfingDebugVariables::setTitle(string _title)
 {
 	singletonGenerate();
 	singleton->mutex.lock();
@@ -13,7 +13,7 @@ void ofxSurfingDebug::setTitle(string _title)
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addNewLine() {
+void ofxSurfingDebugVariables::addNewLine() {
 	string name = "noName";
 
 	singletonGenerate();
@@ -28,7 +28,7 @@ void ofxSurfingDebug::addNewLine() {
 }
 
 //name is hidden in MSG_TEXT types. maybe not required but could search item by name..
-void ofxSurfingDebug::addText(string _message, bool _newLine) {
+void ofxSurfingDebugVariables::addText(string _message, bool _newLine) {
 	string name = "noName";
 
 	singletonGenerate();
@@ -45,7 +45,7 @@ void ofxSurfingDebug::addText(string _message, bool _newLine) {
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addText(string name, string _message, bool _newLine) {
+void ofxSurfingDebugVariables::addText(string name, string _message, bool _newLine) {
 	singletonGenerate();
 	singleton->mutex.lock();
 
@@ -60,7 +60,7 @@ void ofxSurfingDebug::addText(string name, string _message, bool _newLine) {
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addString(string name, string *label, bool _newLine)
+void ofxSurfingDebugVariables::addString(string name, string *label, bool _newLine)
 {
 	singletonGenerate();
 	singleton->mutex.lock();
@@ -76,7 +76,7 @@ void ofxSurfingDebug::addString(string name, string *label, bool _newLine)
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addFloat(string name, float *var, bool _newLine)
+void ofxSurfingDebugVariables::addFloat(string name, float *var, bool _newLine)
 {
 	singletonGenerate();
 	singleton->mutex.lock();
@@ -92,7 +92,7 @@ void ofxSurfingDebug::addFloat(string name, float *var, bool _newLine)
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addInt(string name, int *var, bool _newLine)
+void ofxSurfingDebugVariables::addInt(string name, int *var, bool _newLine)
 {
 	singletonGenerate();
 	singleton->mutex.lock();
@@ -108,7 +108,7 @@ void ofxSurfingDebug::addInt(string name, int *var, bool _newLine)
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addBool(string name, bool *var, bool _newLine)
+void ofxSurfingDebugVariables::addBool(string name, bool *var, bool _newLine)
 {
 	singletonGenerate();
 	singleton->mutex.lock();
@@ -124,8 +124,8 @@ void ofxSurfingDebug::addBool(string name, bool *var, bool _newLine)
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addParamFloat(ofParameter<float> p, bool _newLine)
-//void ofxSurfingDebug::addParamFloat(ofParameter<float> *p, bool _newLine)
+void ofxSurfingDebugVariables::addParamFloat(ofParameter<float> p, bool _newLine)
+//void ofxSurfingDebugVariables::addParamFloat(ofParameter<float> *p, bool _newLine)
 {
 	singletonGenerate();
 	singleton->mutex.lock();
@@ -143,7 +143,7 @@ void ofxSurfingDebug::addParamFloat(ofParameter<float> p, bool _newLine)
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::addParamInt(ofParameter<int> p, bool _newLine)
+void ofxSurfingDebugVariables::addParamInt(ofParameter<int> p, bool _newLine)
 {
 	singletonGenerate();
 	singleton->mutex.lock();
@@ -162,7 +162,7 @@ void ofxSurfingDebug::addParamInt(ofParameter<int> p, bool _newLine)
 
 //--
 
-void ofxSurfingDebug::updateItems()
+void ofxSurfingDebugVariables::updateItems()
 {
 	//to read pointers every frame cycle
 	singletonGenerate();
@@ -366,7 +366,7 @@ void ofxSurfingDebug::updateItems()
 
 ///-
 
-ofxSurfingDebug::ofxSurfingDebug() {
+ofxSurfingDebugVariables::ofxSurfingDebugVariables() {
 	showing = false;
 	BBoxShowing = true;
 	momentary = false;
@@ -381,8 +381,8 @@ ofxSurfingDebug::ofxSurfingDebug() {
 	messageBox = "";
 	maxChars = 0;
 
-	ofAddListener(ofEvents().draw, this, &ofxSurfingDebug::draw, OF_EVENT_ORDER_AFTER_APP);
-	ofAddListener(ofEvents().keyPressed, this, &ofxSurfingDebug::keyPressed, OF_EVENT_ORDER_AFTER_APP);
+	ofAddListener(ofEvents().draw, this, &ofxSurfingDebugVariables::draw, OF_EVENT_ORDER_AFTER_APP);
+	ofAddListener(ofEvents().keyPressed, this, &ofxSurfingDebugVariables::keyPressed, OF_EVENT_ORDER_AFTER_APP);
 	
 	//draggable
 	myRect.setAutoSave(true);
@@ -392,19 +392,24 @@ ofxSurfingDebug::ofxSurfingDebug() {
 	//myRect.setRect(200, 200, 200, 400);
 }
 
-ofxSurfingDebug::~ofxSurfingDebug() {
-	ofRemoveListener(ofEvents().draw, this, &ofxSurfingDebug::draw);
-	ofRemoveListener(ofEvents().keyPressed, this, &ofxSurfingDebug::keyPressed);
+ofxSurfingDebugVariables::~ofxSurfingDebugVariables() {
+	//TODO:
+	//it seems that this is not being called...
+
+	ofRemoveListener(ofEvents().draw, this, &ofxSurfingDebugVariables::draw);
+	ofRemoveListener(ofEvents().keyPressed, this, &ofxSurfingDebugVariables::keyPressed);
+
+	exit();
 }
 
-void ofxSurfingDebug::exit() {
+void ofxSurfingDebugVariables::exit() {
 	singletonGenerate();
 	singleton->myRect.saveSettings("", "", false);
 	//myRect.saveSettings("", "", false);
 	//myRect.saveSettings();
 }
 
-void ofxSurfingDebug::draw(ofEventArgs& e) {
+void ofxSurfingDebugVariables::draw(ofEventArgs& e) {
 
 	if (myRect.isEditing()) {
 		pos = ofVec2f(myRect.getX(), myRect.getY());
@@ -495,60 +500,60 @@ void ofxSurfingDebug::draw(ofEventArgs& e) {
 	}
 }
 
-void ofxSurfingDebug::keyPressed(ofKeyEventArgs& key) {
+void ofxSurfingDebugVariables::keyPressed(ofKeyEventArgs& key) {
 	if (!momentary && key.key == helpKey) {
 		showing = !showing;
 	}
 }
 
-void ofxSurfingDebug::clear() {
+void ofxSurfingDebugVariables::clear() {
 	singletonGenerate();
 	singleton->messageBox = "";
 }
 
-void ofxSurfingDebug::setHelpKey(char _key) {
+void ofxSurfingDebugVariables::setHelpKey(char _key) {
 	singletonGenerate();
 	singleton->helpKey = _key;
 }
 
-char ofxSurfingDebug::getHelpKey() {
+char ofxSurfingDebugVariables::getHelpKey() {
 	singletonGenerate();
 	return singleton->helpKey;
 }
 
-void ofxSurfingDebug::setMomentary(bool _momentary) {
+void ofxSurfingDebugVariables::setMomentary(bool _momentary) {
 	singletonGenerate();
 	singleton->momentary = _momentary;
 	if (singleton->momentary) singleton->showing = ofGetKeyPressed(singleton->helpKey);
 }
 
-void ofxSurfingDebug::setShowing(bool _showing) {
+void ofxSurfingDebugVariables::setShowing(bool _showing) {
 	singletonGenerate();
 	singleton->showing = _showing;
 }
 
-void ofxSurfingDebug::setShowFPS(bool _showing) {
+void ofxSurfingDebugVariables::setShowFPS(bool _showing) {
 	singletonGenerate();
 	singleton->showFPS = _showing;
 }
 
-bool ofxSurfingDebug::getMomentary() {
+bool ofxSurfingDebugVariables::getMomentary() {
 	singletonGenerate();
 	return 	singleton->momentary;
 }
 
-bool ofxSurfingDebug::getSwhoing() {
+bool ofxSurfingDebugVariables::getSwhoing() {
 	singletonGenerate();
 	return singleton->showing;
 }
 
-void ofxSurfingDebug::singletonGenerate() {
+void ofxSurfingDebugVariables::singletonGenerate() {
 	if (singleton == nullptr) {
-		singleton = new ofxSurfingDebug();
+		singleton = new ofxSurfingDebugVariables();
 	}
 }
 
-void ofxSurfingDebug::updateDrawPos() {
+void ofxSurfingDebugVariables::updateDrawPos() {
 	// calc position
 	if (font.isLoaded()) {
 		auto fontBoundingBox = singleton->font.getStringBoundingBox(messageBox, pos.x, pos.y);
@@ -563,70 +568,70 @@ void ofxSurfingDebug::updateDrawPos() {
 //layout
 
 //TODO: topAlign implementation
-void ofxSurfingDebug::setPos(ofVec2f _pos, bool _bTopAlign) {
+void ofxSurfingDebugVariables::setPos(ofVec2f _pos, bool _bTopAlign) {
 	singletonGenerate();
 	singleton->pos.set(_pos);
 	singleton->bTopAlign = _bTopAlign;
 	singleton->updateDrawPos();
 }
 
-void ofxSurfingDebug::setPos(float _x, float _y, bool _bTopAlign) {
+void ofxSurfingDebugVariables::setPos(float _x, float _y, bool _bTopAlign) {
 	singleton->bTopAlign = _bTopAlign;
 	setPos(ofVec2f(_x, _y));
 }
 
-ofVec2f ofxSurfingDebug::getPos() {
+ofVec2f ofxSurfingDebugVariables::getPos() {
 	singletonGenerate();
 	return singleton->pos;
 }
 
-ofVec2f ofxSurfingDebug::getSize() {
+ofVec2f ofxSurfingDebugVariables::getSize() {
 	singletonGenerate();
 	ofVec2f size = ofVec2f(singleton->rectBB.width, singleton->rectBB.height);
 	return size;
 }
 
 //colors
-void ofxSurfingDebug::setTextColor(ofColor _color) {
+void ofxSurfingDebugVariables::setTextColor(ofColor _color) {
 	singletonGenerate();
 	singleton->textColor.set(_color);
 }
 
-ofColor ofxSurfingDebug::getTextColor() {
+ofColor ofxSurfingDebugVariables::getTextColor() {
 	singletonGenerate();
 	return singleton->textColor;
 }
 
-void ofxSurfingDebug::setBackgroundColor(ofColor _color) {
+void ofxSurfingDebugVariables::setBackgroundColor(ofColor _color) {
 	singletonGenerate();
 	singleton->bgColor = _color;
 }
 
-void ofxSurfingDebug::setBackgroundAlpha(int _alpha) {
+void ofxSurfingDebugVariables::setBackgroundAlpha(int _alpha) {
 	singletonGenerate();
 	ofColor c = singleton->bgColor;
 	singleton->bgColor.set(c.r, c.g, c.b, _alpha);
 }
 
-ofColor ofxSurfingDebug::getBackgroundColor() {
+ofColor ofxSurfingDebugVariables::getBackgroundColor() {
 	singletonGenerate();
 	return singleton->bgColor;
 }
 
 //font
-void ofxSurfingDebug::loadFont(string _path, float _size) {
+void ofxSurfingDebugVariables::loadFont(string _path, float _size) {
 	singletonGenerate();
 	singleton->font.load(_path, _size);
 	singleton->updateDrawPos();
 }
 
 //layout
-void ofxSurfingDebug::setMarginBorders(int _margin) {
+void ofxSurfingDebugVariables::setMarginBorders(int _margin) {
 	singletonGenerate();
 	singleton->margin = _margin;
 }
 
-void ofxSurfingDebug::setRounded(bool b, float size) {
+void ofxSurfingDebugVariables::setRounded(bool b, float size) {
 	singletonGenerate();
 	singleton->bRounded = b;
 	singleton->roundedSize = size;
@@ -634,13 +639,13 @@ void ofxSurfingDebug::setRounded(bool b, float size) {
 
 //TODO:
 //must repair columns align by tabs
-void ofxSurfingDebug::setTabbed(bool b, int num) {
+void ofxSurfingDebugVariables::setTabbed(bool b, int num) {
 	singletonGenerate();
 	singleton->bTabbed = b;
 	singleton->tabsNum = num;
 }
 
-void ofxSurfingDebug::setFloatResolution(int res) {
+void ofxSurfingDebugVariables::setFloatResolution(int res) {
 	singletonGenerate();
 	singleton->fRes = res;
 }
