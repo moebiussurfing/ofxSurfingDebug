@@ -124,8 +124,9 @@ ofxSurfingDebugVariables::setPos(500, 500);
 
 ## TODO:
 + Add more ofParameter types: colors, ofParameterGroup, etc.
-+ Enable multiple boxes when using multi instances, or just split to another add-on without singleton.
-
++ Allow multiple boxes when using multi instances, or just split to another add-on without singleton.
++ Allow add variables/messages on runtime, not just on setup.
+ 
 ## Fork author
 An add-on by **@moebiusSurfing**  
 *( ManuMolina ) 2019-2021* 
