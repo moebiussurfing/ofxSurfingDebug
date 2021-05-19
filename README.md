@@ -47,10 +47,6 @@ ofxSurfingDebug::setTitle("APP INFO");
 
 // name is not used in this type. no variable, just the string text
 ofxSurfingDebug::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
-//ofxSurfingDebug::addText("noName", "KEY [SPACE]: HIDE/SHOW");
-
-// add empty line to make space
-//ofxSurfingDebug::addNewLine();
 
 // add the referenced variables that you what to show printed in the screen box
 // pass all variables as reference
@@ -61,11 +57,15 @@ ofxSurfingDebug::addBool("myBool1", &b1);
 // float parameter. only for float for now.
 ofxSurfingDebug::addParamFloat(floatParam);
 
+// add empty line to make space
+//ofxSurfingDebug::addNewLine();
+
+//--
+
 // control:
 // change show text box key
 //ofxSurfingDebug::setMomentary(true);
 //ofxSurfingDebug::setHelpKey('d');
-
 
 // customize style:
 // show
@@ -76,13 +76,6 @@ ofxSurfingDebug::addParamFloat(floatParam);
 //ofxSurfingDebug::setMarginBorders(20);
 // tab label names and variable values aligned by columns
 //ofxSurfingDebug::setTabbed(true, 1);
-
-//--
-
-update()
-
-// your variables will change...
-// but nothing more to do.
 ```
 
 You can use this workaround to add ofParameters too:
