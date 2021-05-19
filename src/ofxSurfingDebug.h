@@ -13,6 +13,7 @@ private:
 
 public:
 	ofxInteractiveRect myRect = { "myRect" };
+	static void exit();
 
 public:
     enum MSG_TYPES{
@@ -22,7 +23,8 @@ public:
         MSG_FLOAT,
         MSG_INT,
         MSG_BOOL,
-		MSG_PARAM_FLOAT
+		MSG_PARAM_FLOAT, 
+		MSG_PARAM_INT 
     };
 
     static void setTitle(string _title);
@@ -41,6 +43,7 @@ public:
 	//add abstractParameter
 	//static void addParamFloat(ofParameter<float> *p, bool _newLine = true);
 	static void addParamFloat(ofParameter<float> p, bool _newLine = true);
+	static void addParamInt(ofParameter<int> p, bool _newLine = true);
 
     ///-
 
@@ -122,6 +125,7 @@ private:
 	//could be better to use pointers..?
 	//vector<ofParameter<float>*> paramsFloats;
 	vector<ofParameter<float>> paramsFloats;
+	vector<ofParameter<int>> paramsInt;
 
     void updateItems();
 

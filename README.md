@@ -15,7 +15,10 @@ when using multiple instances,
 All classes will "share" the same text box.
 
 ## Screenshot
-![screenshot](readme_images/screenshot.jpg?raw=true "moebiusSurfing")
+![screenshot](readme_images/Capture.PNG?raw=true "moebiusSurfing")
+
+## Screencast
+![screenshot](readme_images/ofxSurfingDebug.gif?raw=true "moebiusSurfing")
 
 ## Usage
 1. Include `ofxSurfingDebug.h`.
@@ -53,7 +56,7 @@ ofxSurfingDebug::addString("myString1", &str1);ofxSurfingDebug::addFloat("myFloa
 ofxSurfingDebug::addInt("myInt1", &i1);
 ofxSurfingDebug::addBool("myBool1", &b1);
 
-// ofParameters. only for float for now.
+// ofParameters. only float and int types for now.
 ofxSurfingDebug::addParamFloat(floatParam);
 
 // add empty line to make space
@@ -89,7 +92,7 @@ ofxSurfingDebug::addString("myString", (string*)&stringParam.get());//put your c
 ## Dependencies
 * [ofxScaleDragRect](https://github.com/moebiussurfing/ofxScaleDragRect)
 
-## Tested system
+## Tested System
   - **Windows 10** / **VS 2017** / **OF ~0.11**
   - **macOS**. **High Sierra** / **Xcode9** & **Xcode10** / **OF ~0.11**
 
@@ -119,14 +122,13 @@ ofxSurfingDebug::setPos(500, 500);
 
 ```
 
-### TODO:
-+ Add more ofParameters types
-+ Store/Recall position and settings to xml.
-+ Enable multiple boxes or just split to another add-on without singleton.
+## TODO:
++ Add more ofParameters types: colors, ofParameterGroup, etc.
++ Enable multiple boxes when using multy instances, or just split to another add-on without singleton.
 
 ## Fork author
 An add-on by **@moebiusSurfing**  
 *( ManuMolina ) 2019-2021* 
 
 ## Original Author
-**Toru Takata** in Japan. [GitHub](https://github.com/tettou771) [Website Link](http://tettou771.com)  
+**Toru Takata** in Japan. [GitHub](https://github.com/tettou771) [Website Link](http://tettou771.com)

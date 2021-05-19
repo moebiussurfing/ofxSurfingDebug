@@ -143,6 +143,23 @@ void ofxSurfingDebug::addParamFloat(ofParameter<float> p, bool _newLine)
 	singleton->updateDrawPos();
 }
 
+void ofxSurfingDebug::addParamInt(ofParameter<int> p, bool _newLine)
+{
+	singletonGenerate();
+	singleton->mutex.lock();
+
+	string name = p.getName();
+	singleton->paramsInt.push_back(p);
+	int pos = singleton->paramsInt.size() - 1;
+	singleton->items.push_back(MSG_Item{ name, MSG_PARAM_INT, pos });
+
+	if (name.size() > singleton->maxChars)
+		singleton->maxChars = name.size();
+
+	singleton->mutex.unlock();
+	singleton->updateDrawPos();
+}
+
 //--
 
 void ofxSurfingDebug::updateItems()
@@ -305,6 +322,29 @@ void ofxSurfingDebug::updateItems()
 		}
 		break;
 
+		case MSG_PARAM_INT:
+		{
+			int ii = singleton->items[i].position;
+
+			string n = singleton->items[i].name;
+			fillName(n);
+
+			string v = ofToString(singleton->paramsInt[ii].get());
+			singleton->messageBox += n;
+			//singleton->messageBox += ":";
+			if (bTabbed)
+			{
+				for (int i = 0; i < tabsNum; i++)
+				{
+					singleton->messageBox += "\t";
+				}
+			}
+			//singleton->messageBox += ":";
+			singleton->messageBox += v;
+			singleton->messageBox += "\n";
+		}
+		break;
+
 		default:
 			break;
 		}
@@ -346,7 +386,7 @@ ofxSurfingDebug::ofxSurfingDebug() {
 	
 	//draggable
 	myRect.setAutoSave(true);
-	myRect.loadSettings();
+	//myRect.loadSettings();
 	myRect.setLockResize(true);
 	myRect.enableEdit();
 	//myRect.setRect(200, 200, 200, 400);
@@ -355,9 +395,13 @@ ofxSurfingDebug::ofxSurfingDebug() {
 ofxSurfingDebug::~ofxSurfingDebug() {
 	ofRemoveListener(ofEvents().draw, this, &ofxSurfingDebug::draw);
 	ofRemoveListener(ofEvents().keyPressed, this, &ofxSurfingDebug::keyPressed);
+}
 
-
-	myRect.saveSettings();
+void ofxSurfingDebug::exit() {
+	singletonGenerate();
+	singleton->myRect.saveSettings("", "", false);
+	//myRect.saveSettings("", "", false);
+	//myRect.saveSettings();
 }
 
 void ofxSurfingDebug::draw(ofEventArgs& e) {
