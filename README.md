@@ -1,26 +1,26 @@
 # ofxSurfingDebug
 
-This is an **openFrameworks** add-on to subscribe, debug and print some variables of your **ofApp** during runtime without any required updating.
+An **openFrameworks** add-on to subscribe, debug and print some variables of your **ofApp** during runtime without any required updating.
  
 Based in the original add-on:  
 https://github.com/tettou771/ofxHelpMessage from [**Toru Takata**](https://github.com/tettou771)
 
 You can add text messages and variables too.
 
-Added variables (string, float, int, bool) are referenced, and can be showed in realtime in the same text box.
+Added variables (string, float, int, bool) are referenced, and can be showed in realtime in the same text box.  
 You dont need to update nothing.
 
-The class uses a singleton, so you can add referenced variables (or text) from any of your included classes. You just need to add this header to your classes. All classes will "share" the same text box.
-
+The class uses a singleton, so you can add referenced variables (or text) from any of your included classes.  
+You just need to add this header to your classes.  
+All classes will "share" the same text box.
 
 ![screenshot](readme_images/screenshot.jpg?raw=true "moebiusSurfing")
 
 ## Usage
-1. Add this add-on to your project.
-2. Include `ofxSurfingDebug.h`.
-3. Put the static methods like `ofxSurfingDebug::addText("saveKey", "Key S: save");` in setup().
-4. When program running, press '?' key to show text box.
-5. All your added variables will be printed to the screen text box.
+1. Include `ofxSurfingDebug.h`.
+2. Put the static methods like `ofxSurfingDebug::addText("saveKey", "Key S: save");` in setup().
+3. During runtime press '?' key to show text box.
+4. Done! All your added variables will be printed to the screen on every frame.
 
 ### ofApp.h
 ```cpp
@@ -36,52 +36,53 @@ The class uses a singleton, so you can add referenced variables (or text) from a
 ### ofApp.cpp
 ```cpp 
 
-ofApp::setup()
+setup()
 
-    // set first line tittle
-    ofxSurfingDebug::setTitle("APP INFO");
-    
-    // add variables:
+// set tittle
+ofxSurfingDebug::setTitle("APP INFO");
 
-    // name is not used in this type. no variable, just the string text
-    ofxSurfingDebug::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
-	//ofxSurfingDebug::addText("noName", "KEY [SPACE]: HIDE/SHOW");
-    
-    //add empty line to make space
-    ofxSurfingDebug::addNewLine();
+// add/subscribe variables:
 
-    // add the referenced variables that you what to show printed in the screen box
-    // pass all variables as reference
-    ofxSurfingDebug::addString("myString1", &str1);ofxSurfingDebug::addFloat("myFloat1 ", &f1);
-    ofxSurfingDebug::addInt("myInt1", &i1);
-    ofxSurfingDebug::addBool("myBool1", &b1);
-    
-    // float parameter. only for float yes for now. get the name from the parameter
-    ofxSurfingDebug::addParamFloat(floatParam);
+// name is not used in this type. no variable, just the string text
+ofxSurfingDebug::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
+//ofxSurfingDebug::addText("noName", "KEY [SPACE]: HIDE/SHOW");
+
+// add empty line to make space
+ofxSurfingDebug::addNewLine();
+
+// add the referenced variables that you what to show printed in the screen box
+// pass all variables as reference
+ofxSurfingDebug::addString("myString1", &str1);ofxSurfingDebug::addFloat("myFloat1 ", &f1);
+ofxSurfingDebug::addInt("myInt1", &i1);
+ofxSurfingDebug::addBool("myBool1", &b1);
+
+// float parameter. only for float for now.
+ofxSurfingDebug::addParamFloat(floatParam);
+
+// control:
+
+// change show text box key
+//ofxSurfingDebug::setMomentary(true);
+//ofxSurfingDebug::setHelpKey('d');
 
 
-	// control:
+// customize style:
 
-	// change show text box key
-    //ofxSurfingDebug::setMomentary(true);
-    //ofxSurfingDebug::setHelpKey('d');
-    
+// show
+ofxSurfingDebug::setVisible(true);
+// round bbox
+ofxSurfingDebug::setRounded(true, 5.0f);
+// set margin borders
+ofxSurfingDebug::setMarginBorders(20);
+// tab label names and variable values aligned by columns
+ofxSurfingDebug::setTabbed(true, 1);
 
-    // customize style:
+//--
 
-    // show
-    ofxSurfingDebug::setVisible(true);
-    // round bbox
-    ofxSurfingDebug::setRounded(true, 5.0f);
-    // set margin borders
-    ofxSurfingDebug::setMarginBorders(20);
-    // tab label names and variable values aligned by columns
-    ofxSurfingDebug::setTabbed(true, 1);
-    
-ofApp::update()
+update()
 
-    //your variables will change...
-    //but nothing more to do.
+// your variables will change...
+// but nothing more to do.
 ```
 
 You can use this workaround to add ofParameters too:
@@ -127,16 +128,15 @@ ofxSurfingDebug::setPos(500, 500);
 ```
 
 ### TODO:
-+ add ofParameters
-+ enable drag box position by mouse.
-+ store/recall position and settings to xml.
-+ enable multiple boxes or just split to another add-on without singleton.
++ Add more ofParameters types
++ Store/Recall position and settings to xml.
++ Enable multiple boxes or just split to another add-on without singleton.
 
 ## Fork author
 An add-on by **@moebiusSurfing**  
 *( ManuMolina ) 2019-2021* 
 
 ## Original Author
-**Toru Takata** in Japan.
+**Toru Takata** in Japan.  
 [GitHub](https://github.com/tettou771)  
-[Link](http://tettou771.com)  
+[Website Link](http://tettou771.com)  
