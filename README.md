@@ -14,9 +14,6 @@ You just need to add this header to your classes.
 when using multiple instances, 
 All classes will "share" the same text box.
 
-## Screenshot
-![screenshot](readme_images/Capture.PNG?raw=true "moebiusSurfing")
-
 ## Screencast
 ![screenshot](readme_images/ofxSurfingDebug.gif?raw=true "moebiusSurfing")
 
