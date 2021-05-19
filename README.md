@@ -4,15 +4,15 @@ An **openFrameworks** add-on to subscribe, debug and print some variables of you
  
 Based in the original add-on: https://github.com/tettou771/ofxHelpMessage from [**Toru Takata**](https://github.com/tettou771)  
 
-You can add variables and text messages too.
+You can add variables and text or hardcoded messages.  
 
-Added variables (string, float, int, bool) are referenced, and can be showed in realtime in the same text box.  
+Added variables (string, float, int, bool) are referenced, and his value can be showed in realtime in any frame at the same text box.  
 You dont need to update nothing.
 
-The class uses a singleton, so you can add referenced variables (or text) from any of your included classes.  
+**NOTE ABOUT MULTIPLE INSTANCES**  
+The class uses a *singleton*, so you can add referenced variables (or text) from any of your included classes.  
 You just need to add this header to your classes.  
-when using multiple instances, 
-All classes will "share" the same text box.
+When using multiple instances, all classes will "share" the same text box.
 
 ## Screencast
 ![Screencast](readme_images/ofxSurfingDebugVariables.gif?raw=true "moebiusSurfing")
@@ -64,12 +64,12 @@ ofxSurfingDebugVariables::addParamFloat(floatParam);
 // control:
 // change show text box key
 //ofxSurfingDebugVariables::setMomentary(true);
-//ofxSurfingDebugVariables::setHelpKey('d');
+//ofxSurfingDebugVariables::setHelpKey('d');// '?' by default
 
 // customize style:
 // show
 //ofxSurfingDebugVariables::setVisible(true);
-// round bbox
+// round box
 //ofxSurfingDebugVariables::setRounded(true, 5.0f);
 // set margin borders
 //ofxSurfingDebugVariables::setMarginBorders(20);
@@ -121,7 +121,7 @@ ofxSurfingDebugVariables::setPos(500, 500);
 
 ## TODO:
 + Add more ofParameters types: colors, ofParameterGroup, etc.
-+ Enable multiple boxes when using multy instances, or just split to another add-on without singleton.
++ Enable multiple boxes when using multi instances, or just split to another add-on without singleton.
 
 ## Fork author
 An add-on by **@moebiusSurfing**  
