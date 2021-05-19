@@ -33,6 +33,7 @@ float f1;
 int i1;
 bool b1;
 ofParameter<float> floatParam;
+ofParameter<int> intParam;
 ```
 
 ### ofApp.cpp
@@ -40,44 +41,45 @@ ofParameter<float> floatParam;
 
 void ofApp::setup()
 {
- // set the tittle
- ofxSurfingDebugVariables::setTitle("APP INFO");
+    // set the tittle
+    ofxSurfingDebugVariables::setTitle("APP INFO");
 
- // add/subscribe the variables to be monitorized:
+    // add/subscribe the variables to be monitorized:
 
- // hardcoded string text. no name required. not a variable 
- ofxSurfingDebugVariables::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
+    // hardcoded string text. no name required. not a variable 
+    ofxSurfingDebugVariables::addText("KEY [SPACE]: HIDE/SHOW");//not required name on text type
 
- // pass all variables as reference
- ofxSurfingDebugVariables::addString("myString1", &str1);
- ofxSurfingDebugVariables::addFloat("myFloat1 ", &f1);
- ofxSurfingDebugVariables::addInt("myInt1", &i1);
- ofxSurfingDebugVariables::addBool("myBool1", &b1);
+    // pass all variables as reference
+    ofxSurfingDebugVariables::addString("myString1", &str1);
+    ofxSurfingDebugVariables::addFloat("myFloat1 ", &f1);
+    ofxSurfingDebugVariables::addInt("myInt1", &i1);
+    ofxSurfingDebugVariables::addBool("myBool1", &b1);
 
- // ofParameters. only float and int types for now.
- ofxSurfingDebugVariables::addParamFloat(floatParam);
+    // add empty line to make space
+    //ofxSurfingDebugVariables::addNewLine();
+    
+    // ofParameters. only float and int types for now.
+    ofxSurfingDebugVariables::addParamFloat(floatParam);
+    ofxSurfingDebugVariables::addParamInt(intParam);
 
- // add empty line to make space
- //ofxSurfingDebugVariables::addNewLine();
+    //--
 
- //--
+    // control:
+    // change show key
+    //ofxSurfingDebugVariables::setHelpKey('d');// '?' by default
+    //ofxSurfingDebugVariables::setMomentary(true);// show only when key pressed
 
- // control:
- // change show key
- //ofxSurfingDebugVariables::setHelpKey('d');// '?' by default
- //ofxSurfingDebugVariables::setMomentary(true);// show only when key pressed
+    //--
 
- //--
-
- // customize style:
- // show
- //ofxSurfingDebugVariables::setVisible(true);
- // round box
- //ofxSurfingDebugVariables::setRounded(true, 5.0f);
- // set margin borders
- //ofxSurfingDebugVariables::setMarginBorders(20);
- // tab label names and variable values aligned by columns
- //ofxSurfingDebugVariables::setTabbed(true, 1);
+    // customize style:
+    // show
+    //ofxSurfingDebugVariables::setVisible(true);
+    // round box
+    //ofxSurfingDebugVariables::setRounded(true, 5.0f);
+    // set margin borders
+    //ofxSurfingDebugVariables::setMarginBorders(20);
+    // tab label names and variable values aligned by columns
+    //ofxSurfingDebugVariables::setTabbed(true, 1);
 }
 ```
 
