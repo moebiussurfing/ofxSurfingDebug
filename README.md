@@ -9,7 +9,7 @@ You can add variables and text or hardcoded messages.
 Added variables (string, float, int, bool) are referenced, and their value can be shown in real-time in any frame at the same text box.  
 You don't need to update anything.
 
-**NOTE ABOUT MULTIPLE INSTANCES**  
+## NOTE ABOUT MULTIPLE INSTANCES  
 The class uses a *singleton*, so you can add referenced variables (or text) from any of your included classes.  
 You just need to add this header to your classes.  
 When using multiple instances, all classes will "share" the same text box.
