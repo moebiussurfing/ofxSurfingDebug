@@ -2,8 +2,7 @@
 
 An **openFrameworks** add-on to subscribe, debug and print some variables of your **ofApp** during runtime without any required updating.
  
-Based in the original add-on:  
-https://github.com/tettou771/ofxHelpMessage from [**Toru Takata**](https://github.com/tettou771)
+Based in the original add-on: https://github.com/tettou771/ofxHelpMessage from [**Toru Takata**](https://github.com/tettou771)  
 
 You can add variables and text messages too.
 
@@ -54,7 +53,7 @@ ofxSurfingDebug::addString("myString1", &str1);ofxSurfingDebug::addFloat("myFloa
 ofxSurfingDebug::addInt("myInt1", &i1);
 ofxSurfingDebug::addBool("myBool1", &b1);
 
-// float parameter. only for float for now.
+// ofParameters. only for float for now.
 ofxSurfingDebug::addParamFloat(floatParam);
 
 // add empty line to make space
@@ -130,6 +129,4 @@ An add-on by **@moebiusSurfing**
 *( ManuMolina ) 2019-2021* 
 
 ## Original Author
-**Toru Takata** in Japan.  
-[GitHub](https://github.com/tettou771)  
-[Website Link](http://tettou771.com)  
+**Toru Takata** in Japan. [GitHub](https://github.com/tettou771) [Website Link](http://tettou771.com)  
