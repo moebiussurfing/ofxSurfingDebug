@@ -364,7 +364,7 @@ void ofxSurfingDebugVariables::updateItems()
 	singleton->updateDrawPos();
 }
 
-///-
+//-
 
 ofxSurfingDebugVariables::ofxSurfingDebugVariables() {
 	bShowGui = false;
@@ -387,11 +387,11 @@ ofxSurfingDebugVariables::ofxSurfingDebugVariables() {
 	
 	// box draggable
 	myRect.setAutoSave(true);
-	//myRect.loadSettings();
 	myRect.setLockResize(true);
 	myRect.enableEdit();
 	myRect.setRounded(roundedSize);
-	//myRect.setRect(200, 200, 200, 400);
+	myRect.loadSettings();
+	pos = ofVec2f(myRect.getX(), myRect.getY());
 }
 
 ofxSurfingDebugVariables::~ofxSurfingDebugVariables() {
