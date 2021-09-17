@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <interactiveRect>
 	<path></path>
-	<x>670</x>
-	<y>164</y>
-	<width>285</width>
+	<x>102</x>
+	<y>75</y>
+	<width>313</width>
 	<height>527.984</height>
 	<name>myRect</name>
 	<isEditing>1</isEditing>
